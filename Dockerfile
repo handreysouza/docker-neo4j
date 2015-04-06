@@ -8,4 +8,6 @@ RUN cd /opt && mv neo4j-community-2.2.0 neo4j
 ADD graph.db.zip /
 RUN mv /graph.db.zip /opt/neo4j/data
 RUN unzip /opt/neo4j/data/graph.db.zip
-EXPOSE 7474
+RUN echo "org.neo4j.server.webserver.address=0.0.0.0" >> /opt/neo4j/conf/neo4j-server.properties
+#EXPOSE 7474
+ENTRYPOINT exec /opt/neo4j/bin/neo4j console
